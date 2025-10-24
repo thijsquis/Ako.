@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AKO</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">Ako.</div>
+  <nav>
+    <ul>
+      <li><a href="#" onclick="showSection('home')">Home</a></li>
+      <li><a href="#" onclick="showSection('features')">Features</a></li>
+      <li><a href="#" onclick="showSection('reviews')">Reviews</a></li>
+      <li><a href="#" onclick="showSection('stats')">Stats</a></li>
+      <li><a href="#" onclick="showSection('faq')">FAQ</a></li>
+    </ul>
+  </nav>
+  <button id="themeToggle">🌙 Dark Mode</button>
+</header>
+
+<main>
+  <!-- Hero Section -->
+  <section id="home" class="fade-in">
+    <h1>Plan. Organize. Achieve.</h1>
+    <p>The all-in-one student planner for notes, agenda, mindmaps, and productivity.</p>
+    <button onclick="showSection('features')">Explore Features</button>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="fade-in hidden">
+    <h2>Features</h2>
+    <div class="features-grid">
+      <div class="feature-card" onclick="showSection('notes')">
+        <i class="fas fa-sticky-note fa-3x"></i>
+        <h3>Notes</h3>
+        <p>Create, tag, search, and export your study notes.</p>
+      </div>
+      <div class="feature-card" onclick="showSection('agenda')">
+        <i class="fas fa-calendar-alt fa-3x"></i>
+        <h3>Agenda</h3>
+        <p>Track tasks, deadlines, and see calendar view.</p>
+      </div>
+      <div class="feature-card" onclick="showSection('mindmaps')">
+        <i class="fas fa-project-diagram fa-3x"></i>
+        <h3>Mindmaps</h3>
+        <p>Build interactive mindmaps with templates and colors.</p>
+      </div>
+      <div class="feature-card" onclick="showSection('pomodoro')">
+        <i class="fas fa-stopwatch fa-3x"></i>
+        <h3>Pomodoro Timer</h3>
+        <p>Focus using timed study sessions.</p>
+      </div>
+      <div class="feature-card" onclick="showSection('quickNotes')">
+        <i class="fas fa-thumbtack fa-3x"></i>
+        <h3>Quick Notes</h3>
+        <p>Sticky notes that you can move around freely.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-trophy fa-3x"></i>
+        <h3>Achievements</h3>
+        <p>Earn badges for milestones and progress.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section id="reviews" class="fade-in hidden">
+    <h2>Student Reviews</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p>"This planner helped me organize my exams better!"</p>
+        <strong>- Bill Gates</strong>
+      </div>
+      <div class="testimonial-card">
+        <p>"Mindmaps make studying fun and easier to visualize."</p>
+        <strong>- Mark Zuckerberg</strong>
+      </div>
+      <div class="testimonial-card">
+        <p>"Pomodoro timer keeps me focused for longer periods."</p>
+        <strong>- Sophie Rain</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section id="stats" class="fade-in hidden">
+    <h2>Your Progress</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3 id="notesCount">0</h3>
+        <p>Notes Created</p>
+      </div>
+      <div class="stat-card">
+        <h3 id="tasksCount">0</h3>
+        <p>Tasks Added</p>
+      </div>
+      <div class="stat-card">
+        <h3 id="mindmapsCount">0</h3>
+        <p>Mindmaps Built</p>
+      </div>
+      <div class="stat-card">
+        <h3 id="badgesCount">0</h3>
+        <p>Achievements Earned</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="fade-in hidden">
+    <h2>FAQ / Tips</h2>
+    <div class="accordion">
+      <button class="accordion-button">How to use Mindmaps?</button>
+      <div class="accordion-panel"><p>Add nodes, drag them, connect ideas visually.</p></div>
+      <button class="accordion-button">How to take effective notes?</button>
+      <div class="accordion-panel"><p>Use tags, categorize, and review regularly.</p></div>
+      <button class="accordion-button">How to track tasks?</button>
+      <div class="accordion-panel"><p>Use agenda with deadlines and calendar view.</p></div>
+      <button class="accordion-button">How to use Pomodoro?</button>
+      <div class="accordion-panel"><p>Start timer, focus 25 min, short break 5 min.</p></div>
+    </div>
+  </section>
+
+  <!-- Notes Section -->
+  <section id="notes" class="fade-in hidden">
+    <button onclick="showSection('home')">🏠 Home</button>
+    <h2>Notes</h2>
+    <input type="text" id="noteTitle" placeholder="Title">
+    <textarea id="noteInput" rows="5" placeholder="Write your note..."></textarea>
+    <input type="text" id="noteTag" placeholder="Add tag (optional)">
+    <button onclick="saveNote()">Save Note</button>
+    <h3>Saved Notes</h3>
+    <input type="text" id="searchNotes" placeholder="Search notes..." onkeyup="filterNotes()">
+    <div id="savedNotes"></div>
+  </section>
+
+  <!-- Agenda Section -->
+  <section id="agenda" class="fade-in hidden">
+    <button onclick="showSection('home')">🏠 Home</button>
+    <h2>Agenda</h2>
+    <input type="date" id="taskDate">
+    <input type="text" id="taskInput" placeholder="Add a task">
+    <button onclick="addTask()">Add Task</button>
+    <h3>Tasks List</h3>
+    <div id="taskList"></div>
+    <h3>Calendar View</h3>
+    <div id="calendarView"></div>
+  </section>
+
+  <!-- Mindmaps Section -->
+  <section id="mindmaps" class="fade-in hidden">
+    <button onclick="showSection('home')">🏠 Home</button>
+    <h2>Mindmaps</h2>
+    <select id="templateSelect" onchange="applyTemplate()">
+      <option value="">Select Template</option>
+      <option value="brainstorm">Brainstorm</option>
+      <option value="project">Project Planning</option>
+      <option value="qa">Q&A</option>
+    </select>
+    <canvas id="mindmapCanvas" width="900" height="500"></canvas>
+    <p>Click to add nodes, drag to move them. Change node colors with palette.</p>
+    <input type="color" id="nodeColorPicker" value="#4CAF50" onchange="drawMindmap()">
+    <button onclick="toggleConnectMode()">Connect Nodes</button>
+    <button onclick="saveMindmap()">Save Mindmap</button>
+    <button onclick="loadMindmap()">Load Mindmap</button>
+    <button onclick="clearMindmap()">Clear Mindmap</button>
+    <p id="connectStatus"></p>
+  </section>
+
+  <!-- Pomodoro Section -->
+  <section id="pomodoro" class="fade-in hidden">
+    <button onclick="showSection('home')">🏠 Home</button>
+    <h2>Pomodoro Timer</h2>
+    <div id="pomodoroDisplay">25:00</div>
+    <button onclick="startPomodoro()">Start</button>
+    <button onclick="pausePomodoro()">Pause</button>
+    <button onclick="resetPomodoro()">Reset</button>
+  </section>
+
+  <!-- Quick Notes Section -->
+  <section id="quickNotes" class="fade-in hidden">
+    <button onclick="showSection('home')">🏠 Home</button>
+    <h2>Quick Notes</h2>
+    <button onclick="createQuickNote()">Create Quick Note</button>
+    <div id="quickNotesContainer"></div>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2025 AKO. Thijs Quisenaerts</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
